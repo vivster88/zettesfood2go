@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <!-- Top-level Extension & Third-Party Wallet Guard -->
+    <script>
+      (function() {
+        var isExtensionError = function(msg) {
+          if (!msg) return false;
+          var str = typeof msg === 'string' ? msg : (msg.message || msg.toString());
+          return /metamask|ethereum|web3|wallet|failed to connect to metamask|chrome-extension|moz-extension/i.test(str);
+        };
+
+        var origConsoleError = console.error;
+        console.error = function() {
+          for (var i = 0; i < arguments.length; i++) {
+            if (isExtensionError(arguments[i])) {
+              return;
+            }
+          }
+          origConsoleError.apply(console, arguments);
+        };
+
+        var origConsoleWarn = console.warn;
+        console.warn = function() {
+          for (var i = 0; i < arguments.length; i++) {
+            if (isExtensionError(arguments[i])) {
+              return;
+            }
+          }
+          origConsoleWarn.apply(console, arguments);
+        };
+
+        window.addEventListener('unhandledrejection', function(e) {
+          if (isExtensionError(e.reason)) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        window.addEventListener('error', function(e) {
+          if (isExtensionError(e.message) || isExtensionError(e.error) || (e.filename && /extension/i.test(e.filename))) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        var origOnError = window.onerror;
+        window.onerror = function(msg, url, line, col, error) {
+          if (isExtensionError(msg) || isExtensionError(error) || (url && /extension/i.test(url))) {
+            return true; // suppresses the error
+          }
+          if (origOnError) {
+            return origOnError.apply(this, arguments);
+          }
+          return false;
+        };
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zette's Food 2 Go | Special Longganisa</title>
+    <meta name="description" content="Discover Zette's Food 2 Go and our signature Special Longganisa — made with love, packed with flavor, and ready for your next favorite meal." />
+    <meta name="keywords" content="Zette's Food 2 Go, Special Longganisa, Filipino Longganisa, Longganisa Philippines, Filipino Food, Filipino Breakfast, Longganisa Food, Food To Go Philippines" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Zette's Food 2 Go | Special Longganisa" />
+    <meta property="og:description" content="Good Food. Good Mood. Go Zette's! Discover our Special Longganisa — made with love and packed with flavor." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Zette's Food 2 Go" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Zette's Food 2 Go | Special Longganisa" />
+    <meta name="twitter:description" content="Good Food. Good Mood. Go Zette's! Discover our Special Longganisa — made with love and packed with flavor." />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://zettesfood2go.com/#organization",
+          "name": "Zette's Food 2 Go",
+          "slogan": "Good Food. Good Mood. Go Zette's.",
+          "description": "Artisanal Filipino food brand specializing in homemade Special Longganisa made with love and packed with flavor."
+        },
+        {
+          "@type": "Product",
+          "@id": "https://zettesfood2go.com/#product",
+          "name": "Special Longganisa",
+          "brand": {
+            "@type": "Brand",
+            "name": "Zette's Food 2 Go"
+          },
+          "description": "Signature Filipino Special Longganisa pork sausages, perfectly marinated in savory garlic and sweet spices. Frozen fresh and ready to cook."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://zettesfood2go.com/#website",
+          "name": "Zette's Food 2 Go",
+          "url": "https://zettesfood2go.com"
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-[#FFF9F5] text-[#211A25] font-sans antialiased overflow-x-hidden selection:bg-[#5B2A86] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

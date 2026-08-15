@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --purple: #5B2A86;
+    --purple-dark: #32124F;
+    --purple-light: #7A3DB4;
+    --purple-soft: #F4EDFA;
+    --red: #D71920;
+    --red-bright: #F2292E;
+    --red-soft: #FDF2F2;
+    --cream: #FFF9F5;
+    --cream-warm: #FFF2EA;
+    --white: #FFFFFF;
+    --dark: #211A25;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, .font-serif-brand {
+    font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  }
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, Cambria, serif;
+}
+
+.font-script {
+  font-family: 'Caveat', cursive, sans-serif;
+}
+
+.font-sans-brand {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Tasteful subtle paper/grain texture */
+.bg-grain {
+  background-image: radial-gradient(rgba(91, 42, 134, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.bg-grain-dark {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom organic badge and stroke treatments */
+.brand-ring-glow {
+  box-shadow: 0 0 60px -15px rgba(91, 42, 134, 0.35);
+}
+
+.brand-red-glow {
+  box-shadow: 0 10px 30px -8px rgba(215, 25, 32, 0.4);
+}
+

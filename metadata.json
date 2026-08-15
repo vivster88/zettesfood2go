@@ -1,0 +1,6 @@
+{
+  "name": "Zette's Food 2 Go | Special Longganisa",
+  "description": "Premium direct-to-consumer food brand website for Zette's Food 2 Go featuring our signature Special Longganisa — made with love, packed with flavor, and ready for your next favorite meal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
